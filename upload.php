@@ -39,6 +39,7 @@ if(isset($_SESSION['username']) && !empty($_SESSION['username'])) {
                 </div>
                 <div class="col-md-3 my-3">
                     <input type="submit" class="btn btn-primary p-2" value="Upload">
+                    <a class="btn btn-primary p-2" href="log.php">Log</a>
                 </div>
             </form>
         </div>
