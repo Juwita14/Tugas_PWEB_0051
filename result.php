@@ -3,7 +3,7 @@
 $base64_string = $_POST['image'];
 $username = $_POST['username'];
 $password = $_POST['passwordid'];
-$image_name = "C:\\xampp\\htdocs\\kuisdadak\\upload".$username;
+$image_name = "C:\\xampp\\htdocs\\kuisdadak\\upload\\".$username;
 
 echo $username . "-" . $password . "=" . $base64_string;
 echo $_FILES["image"]["name"];
