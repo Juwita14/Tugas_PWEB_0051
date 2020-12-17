@@ -1,4 +1,5 @@
 <?php
+include "koneksi.php";
 
 $base64_string = $_POST['image'];
 $username = $_POST['username'];
@@ -34,4 +35,6 @@ $fileCount = iterator_count($fi);
 $m = array('msg' => "Berhasil Mengirim"." total(".$fileCount.")");
 echo json_encode($m);
 
-?>
+$query = mysqli_query($koneksi, "insert into log (username) values ('$username')");
+
+?><script language="javascript"> window.location="upload.php";</script>
