@@ -31,6 +31,7 @@
                     <?php endwhile; ?>
                 </tbody>
             </table>
+            <a class="btn btn-primary p-2" href="upload.php">Kembali</a>
     </div>
     </body>
 </html>
