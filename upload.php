@@ -1,4 +1,7 @@
-<?php session_start();?>
+<?php 
+session_start();
+include "koneksi.php";
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,8 +14,16 @@
     <body>
     <div class="container">
 <?php
+
 if(isset($_SESSION['username']) && !empty($_SESSION['username'])) {
-   if(!isset($_POST["username"])){
+    $username = $_SESSION['username'];
+    $query = mysqli_query($koneksi, "select * from user where username='$username'");
+
+    while ($row = $query->fetch_assoc())
+    {
+        $passwordid = $row[password];
+    }
+    if(!isset($_POST["username"])){
         include "koneksi.php";
 
         $query=mysqli_query($koneksi,"select * from user");
@@ -21,9 +32,13 @@ if(isset($_SESSION['username']) && !empty($_SESSION['username'])) {
 
 <div class="container-fluid">
         <div class="col-md-12 mt-3">
-            <h1 class="col-md-12 mb-3">Face Detector</h1>
+            <h1 class="col-md-12 mb-3">Upload Gambar</h1>
             <form action="result.php" method="POST" enctype="multipart/form-data">
                 <div class="col-md-12 form-group">
+                    <label>Username</label>
+                    <input tyle="text" name="username" class="form-control" value=<?php echo $_SESSION['username']?>>
+                    <label>Password</label>
+                    <input tyle="text" name="passwordid" class="form-control" value=<?php echo $passwordid?>>
                     <label>Gambar</label>
                     <input type="file" name="image" class="form-control">
                     <small class="text-muted">Hanya menerima format JPG, JPEG, dan PNG</small>
