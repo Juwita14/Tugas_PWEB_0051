@@ -17,16 +17,11 @@ include "koneksi.php";
 
 if(isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     $username = $_SESSION['username'];
-    $query = mysqli_query($koneksi, "select * from user where username='$username'");
 
-    while ($row = $query->fetch_assoc())
-    {
-        $passwordid = $row[password];
-    }
     if(!isset($_POST["username"])){
         include "koneksi.php";
 
-        $query=mysqli_query($koneksi,"select * from user");
+        $query=mysqli_query($koneksi,"select * from user where username='$username'and password='$password'");
         $jumlah=mysqli_num_rows($query);
     ?>
 
@@ -36,12 +31,11 @@ if(isset($_SESSION['username']) && !empty($_SESSION['username'])) {
             <form action="result.php" method="POST" enctype="multipart/form-data">
                 <div class="col-md-12 form-group">
                     <label>Username</label>
-                    <input tyle="text" name="username" class="form-control" value=<?php echo $_SESSION['username']?>>
+                    <input tyle="text" name="username" class="form-control" value=<?php echo $_SESSION['username']?>
                     <label>Password</label>
-                    <input tyle="text" name="passwordid" class="form-control" value=<?php echo $passwordid?>>
+                    <input tyle="text" name="passwordid" class="form-control" value=<?php echo $password?>
                     <label>Gambar</label>
                     <input type="file" name="image" class="form-control">
-                    <small class="text-muted">Hanya menerima format JPG, JPEG, dan PNG</small>
                 </div>
                 <div class="col-md-3 my-3">
                     <input type="submit" class="btn btn-primary p-2" value="Upload">
